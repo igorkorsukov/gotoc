@@ -1,0 +1,9 @@
+.idea
+**.a
+**.user
+**build-*
+**/debug
+**/release
+*.Debug
+*.Release
+Makefile*

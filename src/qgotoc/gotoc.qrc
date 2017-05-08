@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>GoToC/GoForm.qml</file>
+    </qresource>
+</RCC>
