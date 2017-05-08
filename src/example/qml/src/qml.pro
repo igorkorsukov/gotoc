@@ -3,9 +3,17 @@ TEMPLATE = app
 QT += qml quick
 CONFIG += c++11
 
+BIN_PATH = $$PWD/../bin
+OBJ_PATH = $$PWD/../obj
 GOTOC_PATH = $$PWD/../
 
 include($$PWD/../../../qgotoc/qgotoc.pri)
+
+DESTDIR = $$BIN_PATH
+OBJECTS_DIR = $$OBJ_PATH
+MOC_DIR = $$OBJECTS_DIR
+OBJMOC = $$OBJECTS_DIR
+RCC_DIR = $$OBJECTS_DIR
 
 DEPENDPATH += \
     $$PWD/..
