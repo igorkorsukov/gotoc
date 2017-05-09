@@ -5,7 +5,7 @@ CONFIG += c++11
 
 BIN_PATH = $$PWD/../bin
 OBJ_PATH = $$PWD/../obj
-GOTOC_PATH = $$PWD/../
+GOTOC_PATH = $$PWD/../src
 
 include($$PWD/../../../qgotoc/qgotoc.pri)
 
@@ -16,10 +16,10 @@ OBJMOC = $$OBJECTS_DIR
 RCC_DIR = $$OBJECTS_DIR
 
 DEPENDPATH += \
-    $$PWD/..
+    $$GOTOC_PATH
 
 PRE_TARGETDEPS += \
-    $$PWD/../gotoc.a
+    $$GOTOC_PATH/gotoc.a
 
 win32: {
     LIBS += -lwinmm -lWs2_32
