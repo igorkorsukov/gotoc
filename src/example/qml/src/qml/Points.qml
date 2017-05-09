@@ -14,12 +14,17 @@ Rectangle {
         key: 202
     }
 
+    GoListModel {
+        id: pointModel
+        goform: form
+    }
+
     ListView {
         id: view
         anchors.fill: parent
         clip: true
 
-        model: form.model
+        model: pointModel
         delegate: Rectangle {
             anchors.left: parent.left
             anchors.right: parent.right

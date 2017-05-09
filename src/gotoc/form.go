@@ -8,7 +8,7 @@ import (
 
 type FormNotifer interface {
 	Notify(name string)
-	RowChanged(index int)
+	RowChanged(model string, index int)
 }
 
 type FormCreator interface {
@@ -22,8 +22,8 @@ type Form interface {
 	Clicked(name string, args []string)
 
 	//List
-	RowCount() int
-	RowData(index int) interface{}
+	RowCount(model string) int
+	RowData(model string, index int) interface{}
 }
 
 type formWrap struct {
@@ -59,10 +59,10 @@ func (f *formWrap) GoCall(in []byte) []byte {
 	case "clicked":
 		f.Form.Clicked(rpc.Params[0], rpc.Params[1:])
 	case "rowcount":
-		val = f.Form.RowCount()
+		val = f.Form.RowCount(rpc.Params[0])
 	case "rowdata":
-		i, _ := strconv.Atoi(rpc.Params[0])
-		val = f.Form.RowData(i)
+		i, _ := strconv.Atoi(rpc.Params[1])
+		val = f.Form.RowData(rpc.Params[0], i)
 	}
 
 	var b []byte
@@ -80,7 +80,7 @@ func (f *formWrap) Notify(name string) {
 	f.CCaller.C_Call(f.Key, b)
 }
 
-func (f *formWrap) RowChanged(index int) {
-	b, _ := rpcMarshal("rowchanged", []string{strconv.Itoa(index)})
+func (f *formWrap) RowChanged(model string, index int) {
+	b, _ := rpcMarshal("rowchanged", []string{model, strconv.Itoa(index)})
 	f.CCaller.C_Call(f.Key, b)
 }

@@ -4,17 +4,16 @@
 #include <QDebug>
 
 QGoForm::QGoForm(QObject *parent)
-    : QObject(parent), m_key(0), m_channel(NULL), m_model(NULL)
+    : QObject(parent), m_key(0), m_inited(false), m_channel(NULL)
 {
 
 }
 
 QGoForm::~QGoForm()
 {
-    sendRpc(Rpc("destroy"));
+    send(Rpc("destroy"));
 
     delete m_channel;
-    delete m_model;
 }
 
 void QGoForm::init(int key)
@@ -26,11 +25,10 @@ void QGoForm::init(int key)
     m_channel = new RpcChannel(key);
     connect(m_channel, SIGNAL(received(Rpc)), this, SLOT(onRpc(Rpc)));
 
-    m_model = new QGoListModel(this);
-    m_model->setChannel(m_channel);
-    emit modelChanged();
+    send(Rpc("new"));
 
-    sendRpc(Rpc("new"));
+    m_inited = true;
+    emit initedChanged(true);
 }
 
 void QGoForm::onRpc(const Rpc &rpc)
@@ -40,28 +38,28 @@ void QGoForm::onRpc(const Rpc &rpc)
     }
 }
 
-QVariant QGoForm::sendRpc(const Rpc &rpc)
+QVariant QGoForm::send(const Rpc &rpc)
 {
     return m_channel->send(rpc);
 }
 
 QVariant QGoForm::value(const QString &name)
 {
-    return sendRpc(Rpc("value", name));
+    return send(Rpc("value", name));
 }
 
 void QGoForm::invoke(const QString &name, const QVariant &args)
 {
     QStringList ps(name);
     ps.append(toStringList(args));
-    sendRpc(Rpc("invoke", ps));
+    send(Rpc("invoke", ps));
 }
 
 void QGoForm::changed(const QString &name, const QVariant &args)
 {
     QStringList ps(name);
     ps.append(toStringList(args));
-    sendRpc(Rpc("changed", ps));
+    send(Rpc("changed", ps));
 }
 
 void QGoForm::clicked(const QString &name, const QVariant &args)
@@ -69,7 +67,7 @@ void QGoForm::clicked(const QString &name, const QVariant &args)
     QStringList ps(name);
     args.toList();
     ps.append(toStringList(args));
-    sendRpc(Rpc("clicked", ps));
+    send(Rpc("clicked", ps));
 }
 
 QVariantList QGoForm::toList(const QVariant &v) const
@@ -104,7 +102,7 @@ int QGoForm::key() const
     return m_key;
 }
 
-QGoListModel* QGoForm::model() const
+bool QGoForm::inited() const
 {
-    return m_model;
+    return m_inited;
 }

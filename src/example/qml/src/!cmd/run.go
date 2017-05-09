@@ -11,7 +11,7 @@ func main() {
 
 	{
 		fmt.Println("start build")
-		out, err := exec.Command("bash.exe", "run.sh").Output()
+		out, err := exec.Command("bash.exe", "build.sh").Output()
 		if err != nil {
 			log.Fatal(err)
 		}

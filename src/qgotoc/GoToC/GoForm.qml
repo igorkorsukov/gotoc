@@ -6,7 +6,6 @@ QtObject {
     id: _blank
 
     property alias key: _form.key
-    property alias model: _form.model
 
     signal notify(string name)
 

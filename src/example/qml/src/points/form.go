@@ -49,14 +49,14 @@ func (f *Form) Clicked(name string, args []string) {
 		p.Counter++
 		p.Subtitle = fmt.Sprint("point clicked: ", p.Counter)
 		f.Points[i] = p
-		f.RowChanged(i)
+		f.RowChanged("", i)
 	}
 }
 
-func (f *Form) RowCount() int {
+func (f *Form) RowCount(model string) int {
 	return len(f.Points)
 }
 
-func (f *Form) RowData(index int) interface{} {
+func (f *Form) RowData(model string, index int) interface{} {
 	return f.Points[index]
 }

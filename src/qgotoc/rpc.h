@@ -10,8 +10,8 @@ struct Rpc {
     QString method;
     QStringList params;
     Rpc() {}
-    Rpc(const QString &m, const QString &p = QString()) : method(m), params(p) {}
-    Rpc(const QString &m, const QStringList &ps) : method(m), params(ps) {}
+    Rpc(const QString &m, const QString &p) : method(m), params(p) {}
+    Rpc(const QString &m, const QStringList &ps = QStringList()) : method(m), params(ps) {}
 
     QJsonObject toObj() const;
     static Rpc fromObj(const QJsonObject &obj);

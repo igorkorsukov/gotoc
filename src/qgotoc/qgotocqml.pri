@@ -15,7 +15,8 @@ SOURCES += \
     $$PWD/rpc.cpp
 
 DISTFILES += \
-    $$PWD/GoToC/GoForm.qml
+    $$PWD/GoToC/GoForm.qml \
+    $$PWD/GoToC/GoListModel.qml
 
 RESOURCES += \
     $$PWD/gotoc.qrc

@@ -18,8 +18,8 @@ func (f *BaseForm) Notify(name string) {
 	f.Notifer.Notify(name)
 }
 
-func (f *BaseForm) RowChanged(index int) {
-	f.Notifer.RowChanged(index)
+func (f *BaseForm) RowChanged(model string, index int) {
+	f.Notifer.RowChanged(model, index)
 }
 
 func (f *BaseForm) RegValue(name string, fn ValueFn) {
@@ -45,9 +45,9 @@ func (f *BaseForm) Clicked(name string, args []string) {
 
 }
 
-func (f *BaseForm) RowCount() int {
+func (f *BaseForm) RowCount(model string) int {
 	return 0
 }
-func (f *BaseForm) RowData(index int) interface{} {
+func (f *BaseForm) RowData(model string, index int) interface{} {
 	return nil
 }
