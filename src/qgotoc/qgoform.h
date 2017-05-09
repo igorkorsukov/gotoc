@@ -2,8 +2,6 @@
 #define QGOFORM_H
 
 #include <QObject>
-#include <QJSValue>
-#include <QJsonObject>
 #include <QVariant>
 
 #include "rpc.h"

@@ -1,7 +1,13 @@
 package gotoc
 
+import "fmt"
+
 func RegFunc(fi int, fn GoFunc) error {
-	return _g_gotoc.RegCall(fi, &fnWrap{Fn: fn})
+	err := _g_gotoc.RegCall(fi, &fnWrap{Fn: fn})
+	if err != nil {
+		fmt.Println("gotoc: regfunc fi: ", fi, ", err: ", err.Error())
+	}
+	return err
 }
 
 func RegCall(fi int, c GoCall) error {

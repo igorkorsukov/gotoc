@@ -47,7 +47,7 @@ func (f *Form) Value(name string) interface{} {
 	//! NOTE Значения можно возращать тут используя свитч или через регистрацию функций в базовой форме
 	switch name {
 	case "title":
-		return "LoginForm ( login == pass - success)"
+		return "LoginForm ( login == pass - success )"
 	}
 	return f.BaseForm.Value(name)
 }

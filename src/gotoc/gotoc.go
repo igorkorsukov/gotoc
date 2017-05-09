@@ -51,6 +51,8 @@ func NewGoToC(c_call unsafe.Pointer) *GoToC {
 	_g_gotoc.calls[11] = &fnWrap{Fn: _g_gotoc.doEcho}
 	_g_gotoc.calls[20] = &fnWrap{Fn: _g_gotoc.onBenchGo}
 
+	//_g_gotoc.debug = true
+
 	return _g_gotoc
 }
 
@@ -112,6 +114,13 @@ func (g *GoToC) Go_Call(fi int, in_p unsafe.Pointer, in_size int) (unsafe.Pointe
 		}
 	}
 	return nil, 0
+}
+
+func C_Call(i int, in_b []byte) ([]byte, error) {
+	if _g_gotoc != nil {
+		return _g_gotoc.C_Call(i, in_b)
+	}
+	return nil, nil
 }
 
 func (g *GoToC) C_Call(i int, in_b []byte) ([]byte, error) {

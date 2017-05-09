@@ -1,6 +1,5 @@
 #include "qgotoc.h"
 #include <QDebug>
-#include <QJsonDocument>
 #include <QElapsedTimer>
 
 #include "gotoc.h"
@@ -106,7 +105,7 @@ void QGoToC::copyData(const QByteArray &in_ba, void** out_p, int *out_size)
 void QGoToC::c_Call(int fi, void *in_p, int in_size, void **out_p, int *out_size)
 {
     CFnRaw* fn = m_fns.value(fi, 0);
-    qDebug() << "qgotoc: c_Call fi: " << fi << ", ok:" << (fn != 0);
+    //qDebug() << "qgotoc: c_Call fi: " << fi << ", ok:" << (fn != 0);
     if (fn) {
         QByteArray ba = fn->call(static_cast<const char*>(in_p), in_size);
         copyData(ba, out_p, out_size);
