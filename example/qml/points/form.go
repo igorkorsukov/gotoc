@@ -2,8 +2,9 @@ package points
 
 import (
 	"fmt"
-	"gotoc"
+
 	"strconv"
+	"github.com/igorkorsukov/gotoc"
 )
 
 type FormCreator struct {

@@ -5,10 +5,11 @@ import "C"
 import (
 	"encoding/json"
 	"fmt"
-	"gotoc"
 	"strconv"
 	"strings"
 	"unsafe"
+
+	"github.com/igorkorsukov/gotoc"
 )
 
 //export GoToC_Init

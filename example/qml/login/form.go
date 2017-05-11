@@ -2,7 +2,8 @@ package login
 
 import (
 	"fmt"
-	"gotoc"
+
+	"github.com/igorkorsukov/gotoc"
 )
 
 type FormCreator struct {

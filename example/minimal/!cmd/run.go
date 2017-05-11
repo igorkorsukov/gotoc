@@ -11,7 +11,7 @@ func main() {
 
 	{
 		fmt.Println("start build")
-		out, err := exec.Command("bash.exe", "build.sh").Output()
+		out, err := exec.Command("bash.exe", "build_win.sh").Output()
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -22,7 +22,7 @@ func main() {
 	fmt.Println("end build")
 	fmt.Println("run")
 
-	cmd := exec.Command("../bin/minimal.exe")
+	cmd := exec.Command("build/bin/minimal.exe")
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
 		log.Fatal(err)

@@ -4,10 +4,11 @@ import "C"
 
 import (
 	"fmt"
-	"gotoc"
-	"login"
-	"points"
 	"unsafe"
+
+	"github.com/igorkorsukov/gotoc"
+	"github.com/igorkorsukov/gotoc/example/qml/login"
+	"github.com/igorkorsukov/gotoc/example/qml/points"
 )
 
 //export GoToC_Init

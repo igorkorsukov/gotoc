@@ -1,15 +1,13 @@
 TEMPLATE = app
 
-QT = core
+QT += qml quick
 CONFIG += c++11
-CONFIG += console
-CONFIG -= app_bundle
 
-BIN_PATH = $$PWD/../bin
-OBJ_PATH = $$PWD/../obj
-GOTOC_PATH = $$PWD/../src
+BIN_PATH = $$PWD/build/bin
+OBJ_PATH = $$PWD/build/obj
+GOTOC_PATH = $$PWD
 
-include($$PWD/../../../qgotoc/qgotoc.pri)
+include($$PWD/../../qgotoc/qgotocqml.pri)
 
 DESTDIR = $$BIN_PATH
 OBJECTS_DIR = $$OBJ_PATH
@@ -26,6 +24,14 @@ PRE_TARGETDEPS += \
 win32: {
     LIBS += -lwinmm -lWs2_32
 }
+
+RESOURCES += \
+    qml/qml.qrc
+
+DISTFILES += \
+    qml/Login.qml \
+    qml/Main.qml \
+    qml/Points.qml
 
 SOURCES += \
     main.cpp
